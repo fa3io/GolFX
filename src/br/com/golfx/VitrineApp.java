@@ -65,10 +65,11 @@ public class VitrineApp extends Application {
 		tbVitrine = new TableView<ItensProperty>();
 		tbVitrine.setPrefSize(780, 550);
 		
-		columnProduto = new TableColumn<ItensProperty, String>();
-		columnPreco = new TableColumn<ItensProperty, Double>();
+		columnProduto = new TableColumn<ItensProperty, String>("Nome");
+		columnPreco = new TableColumn<ItensProperty, Double>("Preço");
 		
 		tbVitrine.getColumns().addAll(columnProduto, columnPreco);
+		
 		
 		pane.getChildren().addAll(txPesquisa, tbVitrine);
 		
@@ -80,11 +81,12 @@ public class VitrineApp extends Application {
 	}
 	
 	public void initLayout(){
-		txPesquisa.setLayoutX((pane.getWidth() - txPesquisa.getWidth()) / 2);
-		txPesquisa.setLayoutY(50);
+		txPesquisa.setLayoutX(10);
+		txPesquisa.setLayoutY(10);
 		tbVitrine.setLayoutX((pane.getWidth() - tbVitrine.getWidth()) / 2);
-		tbVitrine.setLayoutY(100);
+		tbVitrine.setLayoutY(40);
 		
+		pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
 		
 	}
 	
