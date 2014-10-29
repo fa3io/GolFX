@@ -86,7 +86,7 @@ public class VitrineApp extends Application {
 		tbVitrine.setLayoutX((pane.getWidth() - tbVitrine.getWidth()) / 2);
 		tbVitrine.setLayoutY(40);
 		
-		pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
+	pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
 		
 	}
 	
