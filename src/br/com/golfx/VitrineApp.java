@@ -3,6 +3,8 @@ package br.com.golfx;
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,7 +65,7 @@ public class VitrineApp extends Application {
 		txPesquisa.setPrefWidth(250);
 		
 		tbVitrine = new TableView<ItensProperty>();
-		tbVitrine.setPrefSize(780, 550);
+		tbVitrine.setPrefSize(780, 500);
 		
 		columnProduto = new TableColumn<ItensProperty, String>("Nome");
 		columnPreco = new TableColumn<ItensProperty, Double>("Preço");
@@ -83,8 +85,8 @@ public class VitrineApp extends Application {
 	public void initLayout(){
 		txPesquisa.setLayoutX(10);
 		txPesquisa.setLayoutY(10);
-		tbVitrine.setLayoutX((pane.getWidth() - tbVitrine.getWidth()) / 2);
-		tbVitrine.setLayoutY(40);
+		tbVitrine.setLayoutX(10);
+		tbVitrine.setLayoutY(60);
 		
 	pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
 		
@@ -96,12 +98,12 @@ public class VitrineApp extends Application {
 		Produto p3 = new Produto("Chuteira", 250.0);
 		Produto p4 = new Produto("Capacete", 60.0);
 		Produto p5 = new Produto("Luva", 35.0);
-		Produto p6 = new Produto("Protetor Bucal", 40.0);
-		Produto p7 = new Produto("Bastão", 80.0);
+		Produto p6 = new Produto("Camisa", 40.0);
+
 		
 		Vitrine vitrine = new Vitrine();
 		
-		vitrine.add(p1, p2, p3, p4, p5, p6, p7);
+		vitrine.add(p1, p2, p3, p4, p5, p6);
 		
 		for (Produto produto : vitrine.getProdutos()) {
 			VitrineApp.listItens.add(new ItensProperty(produto.getNome(), produto.getPreco()));
@@ -132,6 +134,29 @@ public class VitrineApp extends Application {
 				}
 			}
 		});
+		tbVitrine.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ItensProperty>() {
+
+			@Override
+			public void changed(ObservableValue<? extends ItensProperty> observable, ItensProperty oldItem, ItensProperty newIten) {
+			
+				//indicando os itens para nossa tela ItemApp
+				ItemApp.setProduto(new Produto(newIten.getProduto(),newIten.getPreco()));
+				ItemApp.setIndex(tbVitrine.getSelectionModel().getSelectedIndex());
+				
+				//Chamando nossa tela
+				try {
+					new ItemApp().start(new Stage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public static Carrinho getCarinho() {
+		return carinho;
+	}
+	public static void setCarinho(Carrinho carinho) {
+		VitrineApp.carinho = carinho;
 	}
 
 	public class ItensProperty {
