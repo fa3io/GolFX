@@ -48,6 +48,7 @@ public class VitrineApp extends Application {
 		initLayout();
 		
 		tbVitrine.setItems(listItens);
+		tbVitrine.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 	}
 
@@ -55,6 +56,7 @@ public class VitrineApp extends Application {
 		launch(args);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void initComponets(){
 		
 		pane = new AnchorPane();
@@ -89,7 +91,7 @@ public class VitrineApp extends Application {
 		tbVitrine.setLayoutX(10);
 		tbVitrine.setLayoutY(60);
 		
-	pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
+		pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
 		
 	}
 	

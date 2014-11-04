@@ -46,6 +46,8 @@ public class ItemApp extends Application {
 
 		pane.getChildren().addAll(lbNome, lbPreco, imagem );
 		pane.getChildren().add(btaddCarinho);
+		
+
 	}
 
 	public void initLayout() {
