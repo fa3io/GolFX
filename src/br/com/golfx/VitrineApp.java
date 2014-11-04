@@ -85,6 +85,7 @@ public class VitrineApp extends Application {
 	public void initLayout(){
 		txPesquisa.setLayoutX(10);
 		txPesquisa.setLayoutY(10);
+		
 		tbVitrine.setLayoutX(10);
 		tbVitrine.setLayoutY(60);
 		
