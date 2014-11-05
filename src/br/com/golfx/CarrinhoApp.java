@@ -1,6 +1,11 @@
 package br.com.golfx;
 
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -20,6 +25,7 @@ import javafx.stage.Stage;
 public class CarrinhoApp extends Application {
 	
 	private AnchorPane pane;
+	private static Stage stage;
 	private TableView<ItensProperty> tbCarinho;
 	private TableColumn<ItensProperty, String> columnProduto;
 	private TableColumn<ItensProperty, Double> columnPreco;
@@ -85,8 +91,26 @@ public class CarrinhoApp extends Application {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-//			Implementação no Botão Comprar
-				
+				Thread thread = new Thread(){
+					@Override
+					public void run() {
+							try {
+								sleep(5000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							JOptionPane.showMessageDialog(null, "Compra", "Compra Realizada com Sucesso", JOptionPane.INFORMATION_MESSAGE);
+							Platform.runLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									CarrinhoApp.getStage().close();
+									ItemApp.getStage().close();	
+								}
+							});
+					}
+				};
+				thread.start();
 			}
 		});
 		
@@ -94,7 +118,13 @@ public class CarrinhoApp extends Application {
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-//				Implementação no Botão excluir
+				
+				String nome = tbCarinho.getSelectionModel().getSelectedItem().getProduto();
+				Double preco = tbCarinho.getSelectionModel().getSelectedItem().getPreco();
+				ItensProperty item = tbCarinho.getSelectionModel().getSelectedItem();
+				
+				VitrineApp.getCarinho().remover(new Produto(nome,preco));
+				tbCarinho.getItems().remove(item);
 				
 			}
 		});
@@ -102,7 +132,8 @@ public class CarrinhoApp extends Application {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-//				Implementação no Botão excluir
+				CarrinhoApp.getStage().close();
+				ItemApp.getStage().close();
 				
 			}
 			
@@ -138,6 +169,10 @@ public class CarrinhoApp extends Application {
 		columnPreco.setCellValueFactory(new PropertyValueFactory<ItensProperty, Double>("preco"));
 	
 	}
+public static Stage getStage() {
+	return stage;
+}
+	
 	
 	
 public class ItensProperty {

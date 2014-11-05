@@ -19,7 +19,7 @@ public class ItemApp extends Application {
 	private ImageView imagem;
 	private Label lbNome, lbPreco;
 	private Button btaddCarinho;
-	private static Stage stage;
+	public static Stage stage;
 	private Scene scene;
 	private static Produto produto;
 	private static int index;
@@ -74,6 +74,7 @@ public class ItemApp extends Application {
 	public void start(Stage stage) throws Exception {
 		initComponents();
 		initListener();
+		this.stage = stage;
 		scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.setTitle("Item");
@@ -117,6 +118,9 @@ public class ItemApp extends Application {
 	}
 	public static void setProduto(Produto produto) {
 		ItemApp.produto = produto;
+	}
+	public static Stage getStage() {
+		return stage;
 	}
 
 }
