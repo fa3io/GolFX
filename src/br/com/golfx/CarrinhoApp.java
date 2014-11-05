@@ -3,6 +3,7 @@ package br.com.golfx;
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,11 +24,12 @@ public class CarrinhoApp extends Application {
 	private TableColumn<ItensProperty, String> columnProduto;
 	private TableColumn<ItensProperty, Double> columnPreco;
 	private Button btExcluir, btComprar, btVoltar;
-	private static ObservableList<ItensProperty> listaItens;
+	private static ObservableList<ItensProperty> listaItens = FXCollections.observableArrayList();;
 	
 	public void initItens(){
 		for (Produto produto : VitrineApp.getCarinho().getProdutos()) {
 			ItensProperty item = new ItensProperty(produto.getNome(), produto.getPreco());
+			System.out.println(item);
 			listaItens.add(item);
 			
 		}
