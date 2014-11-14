@@ -74,7 +74,7 @@ public class ItemApp extends Application {
 	public void start(Stage stage) throws Exception {
 		initComponents();
 		initListener();
-		this.stage = stage;
+		ItemApp.stage = stage;
 		scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.setTitle("Item");

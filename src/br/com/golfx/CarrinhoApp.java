@@ -1,7 +1,5 @@
 package br.com.golfx;
 
-import java.util.Iterator;
-
 import javax.swing.JOptionPane;
 
 import javafx.application.Application;
@@ -35,7 +33,6 @@ public class CarrinhoApp extends Application {
 	public void initItens(){
 		for (Produto produto : VitrineApp.getCarinho().getProdutos()) {
 			ItensProperty item = new ItensProperty(produto.getNome(), produto.getPreco());
-			System.out.println(item);
 			listaItens.add(item);
 			
 		}
@@ -49,6 +46,7 @@ public class CarrinhoApp extends Application {
 		
 		Scene scene = new Scene(pane);
 		
+		CarrinhoApp.stage = stage;
 		stage.setScene(scene);
 		
 		stage.setTitle("Carrinho");
@@ -99,7 +97,7 @@ public class CarrinhoApp extends Application {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							JOptionPane.showMessageDialog(null, "Compra", "Compra Realizada com Sucesso", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Compra Realizada com Sucesso !!!", "Fechamento De Compra", JOptionPane.INFORMATION_MESSAGE);
 							Platform.runLater(new Runnable() {
 								
 								@Override
@@ -134,11 +132,8 @@ public class CarrinhoApp extends Application {
 			public void handle(ActionEvent arg0) {
 				CarrinhoApp.getStage().close();
 				ItemApp.getStage().close();
-				
 			}
-			
-		});
-		
+		});	
 	}
 
 	public static void main(String[] args) {
