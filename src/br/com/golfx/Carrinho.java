@@ -26,6 +26,10 @@ public class Carrinho {
 			
 		}
 	}
+	public void removerAll( ){
+		this.produtos.removeAll(getProdutos());
+		
+	}
 	
 	public List<Produto> getProdutos() {
 		return produtos;

@@ -28,9 +28,10 @@ public class CarrinhoApp extends Application {
 	private TableColumn<ItensProperty, String> columnProduto;
 	private TableColumn<ItensProperty, Double> columnPreco;
 	private Button btExcluir, btComprar, btVoltar;
-	private static ObservableList<ItensProperty> listaItens = FXCollections.observableArrayList();;
+	private static ObservableList<ItensProperty> listaItens;
 	
 	public void initItens(){
+	listaItens = FXCollections.observableArrayList();
 		for (Produto produto : VitrineApp.getCarinho().getProdutos()) {
 			ItensProperty item = new ItensProperty(produto.getNome(), produto.getPreco());
 			listaItens.add(item);
@@ -40,8 +41,8 @@ public class CarrinhoApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		initComponets();
 		initItens();
+		initComponets();
 		initListener();
 		
 		Scene scene = new Scene(pane);
@@ -98,6 +99,7 @@ public class CarrinhoApp extends Application {
 								e.printStackTrace();
 							}
 							JOptionPane.showMessageDialog(null, "Compra Realizada com Sucesso !!!", "Fechamento De Compra", JOptionPane.INFORMATION_MESSAGE);
+							VitrineApp.getCarinho().removerAll();
 							Platform.runLater(new Runnable() {
 								
 								@Override
