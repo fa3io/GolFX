@@ -37,6 +37,8 @@ import javafx.stage.Stage;
 		initListener();
 		
 		scene = new Scene(pane);
+		//Adicionando arquivo css a nossa cena
+		scene.getStylesheets().add(getClass().getResource("login.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle("Login - GolFX");
 		stage.setResizable(false);
@@ -54,17 +56,22 @@ import javafx.stage.Stage;
 		public void initComponents(){
 			pane = new AnchorPane();
 			pane.setPrefSize(400, 300);
+			//dentro do nosso arquivo css associamos  uma classe ao componente
+			pane.getStyleClass().add("pane");
 			txLogin = new TextField();
 			txLogin.setPromptText("Digite aqui seu login");
 			txSenha = new PasswordField();
 			txSenha.setPromptText("Digite aqui sua senha");
 			btEntrar = new Button("Entrar");
+			//adicionando css
+			btEntrar.getStyleClass().add("btEntrar");
 			btSair = new Button("Sair");
+			//adicionando css
+			btSair.getStyleClass().add("btSair");
 			pane.getChildren().addAll(txLogin, txSenha, btEntrar, btSair);
 			
 			
 			
-			pane.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, black 0%, silver 100%);");
 			
 		}
 		public void initLayout(){
