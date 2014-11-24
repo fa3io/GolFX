@@ -126,17 +126,18 @@ public class VitrineApp extends Application {
 	
 	public void initListener(){
 		
-		txPesquisa.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent arg0) {
-				if(!txPesquisa.getText().equalsIgnoreCase("")){
-					tbVitrine.setItems(findItens());
-				}else{
-					tbVitrine.setItems(listItens);
+		txPesquisa.setOnAction(
+				
+				(event)->{
+					
+					if(!txPesquisa.getText().equalsIgnoreCase("")){
+						tbVitrine.setItems(findItens());
+					}else{
+						tbVitrine.setItems(listItens);
+					}
 				}
-			}
-		});
+				
+				);
 		tbVitrine.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ItensProperty>() {
 
 			@Override
