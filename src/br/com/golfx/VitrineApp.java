@@ -14,9 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class VitrineApp extends Application {
@@ -67,10 +65,6 @@ public class VitrineApp extends Application {
 		txPesquisa = new TextField();
 		txPesquisa.setPromptText("Digite o item para pesquisar ...");
 		txPesquisa.setPrefWidth(250);
-		// Incluindo efeito de sombreamento na aplicação
-		DropShadow EffectDropShadow =  new DropShadow(50.0, Color.SILVER);
-		EffectDropShadow.setSpread(0.5);
-		txPesquisa.setEffect(EffectDropShadow); 
 		
 		tbVitrine = new TableView<ItensProperty>();
 		tbVitrine.setPrefSize(780, 500);
@@ -132,17 +126,18 @@ public class VitrineApp extends Application {
 	
 	public void initListener(){
 		
-		txPesquisa.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent arg0) {
-				if(!txPesquisa.getText().equalsIgnoreCase("")){
-					tbVitrine.setItems(findItens());
-				}else{
-					tbVitrine.setItems(listItens);
+		txPesquisa.setOnAction(
+				
+				(event)->{
+					
+					if(!txPesquisa.getText().equalsIgnoreCase("")){
+						tbVitrine.setItems(findItens());
+					}else{
+						tbVitrine.setItems(listItens);
+					}
 				}
-			}
-		});
+				
+				);
 		tbVitrine.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ItensProperty>() {
 
 			@Override
